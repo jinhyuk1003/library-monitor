@@ -23,7 +23,10 @@ jobs:
 
       - name: 데이터 수집
         env:
-          LIBRARY_API_KEY: ${{ secrets.LIBRARY_API_KEY }}
-          SUPABASE_URL:    ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY:    ${{ secrets.SUPABASE_KEY }}
+          LIBRARY_API_KEY:      ${{ secrets.LIBRARY_API_KEY }}
+          SUPABASE_URL:         ${{ secrets.SUPABASE_URL }}
+          SUPABASE_KEY:         ${{ secrets.SUPABASE_KEY }}
+          KAKAO_REST_KEY:       ${{ secrets.KAKAO_REST_KEY }}
+          KAKAO_REFRESH_TOKEN:  ${{ secrets.KAKAO_REFRESH_TOKEN }}
+          ALERT_ENABLED:        ${{ vars.ALERT_ENABLED }}
         run: python fetch.py

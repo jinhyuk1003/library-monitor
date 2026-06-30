@@ -195,6 +195,9 @@ def collect_once(verbose: bool = True) -> list[dict]:
         save_to_db(rooms)
         print(f"  -> SQLite 저장: {DB_PATH} ({len(rooms)}행)")
 
+    from alert import check_and_alert
+    check_and_alert(rooms)
+
     return rooms
 
 
