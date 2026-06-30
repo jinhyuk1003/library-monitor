@@ -14,6 +14,7 @@ from zoneinfo import ZoneInfo
 
 KAKAO_REST_KEY      = os.getenv("KAKAO_REST_KEY", "")
 KAKAO_REFRESH_TOKEN = os.getenv("KAKAO_REFRESH_TOKEN", "")
+KAKAO_CLIENT_SECRET = os.getenv("KAKAO_CLIENT_SECRET", "")
 ALERT_ENABLED       = os.getenv("ALERT_ENABLED", "true").lower() == "true"
 SUPABASE_URL        = os.getenv("SUPABASE_URL", "")
 SUPABASE_KEY        = os.getenv("SUPABASE_KEY", "")
@@ -26,11 +27,14 @@ FULL_THRESHOLD = 0          # 이 값 이하면 "만석"으로 간주 (기본 0�
 
 
 def _get_access_token() -> str:
-    data = urllib.parse.urlencode({
+    params = {
         "grant_type": "refresh_token",
         "client_id": KAKAO_REST_KEY,
         "refresh_token": KAKAO_REFRESH_TOKEN,
-    }).encode()
+    }
+    if KAKAO_CLIENT_SECRET:
+        params["client_secret"] = KAKAO_CLIENT_SECRET
+    data = urllib.parse.urlencode(params).encode()
     req = urllib.request.Request(
         "https://kauth.kakao.com/oauth/token",
         data=data,
