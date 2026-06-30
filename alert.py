@@ -48,7 +48,7 @@ def _send_message(access_token: str, text: str):
     template = json.dumps({
         "object_type": "text",
         "text": text,
-        "link": {"web_url": "https://www.snlib.go.kr/seo/menu/new/main/seatSearch.do", "mobile_web_url": "https://www.snlib.go.kr/seo/menu/new/main/seatSearch.do"},
+        "link": {"web_url": "http://www.snlib.go.kr/sh/contents/roomStatus.do", "mobile_web_url": "http://www.snlib.go.kr/sh/contents/roomStatus.do"},
     }, ensure_ascii=False)
     data = urllib.parse.urlencode({"template_object": template}).encode()
     req = urllib.request.Request(
