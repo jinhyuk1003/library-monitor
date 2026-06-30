@@ -202,4 +202,12 @@ def collect_once(verbose: bool = True) -> list[dict]:
 
 
 if __name__ == "__main__":
-    collect_once()
+    import sys
+    if len(sys.argv) > 1 and sys.argv[1] == "--test-alert":
+        from alert import _get_access_token, _send_message
+        from datetime import datetime
+        token = _get_access_token()
+        _send_message(token, f"✅ 알림 테스트 성공\n{datetime.now(KST).strftime('%H:%M KST')}")
+        print("카카오톡 테스트 메시지 전송 완료")
+    else:
+        collect_once()

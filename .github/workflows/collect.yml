@@ -2,8 +2,13 @@ name: 도서관 열람실 수집
 
 on:
   schedule:
-    - cron: "*/10 * * * *"   # 10분마다 실행
-  workflow_dispatch:          # 수동 실행 버튼
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "실행 모드 (비워두면 일반 수집, test-alert 입력 시 알림 테스트)"
+        required: false
+        default: ""
 
 jobs:
   collect:
@@ -29,4 +34,9 @@ jobs:
           KAKAO_REST_KEY:       ${{ secrets.KAKAO_REST_KEY }}
           KAKAO_REFRESH_TOKEN:  ${{ secrets.KAKAO_REFRESH_TOKEN }}
           ALERT_ENABLED:        ${{ vars.ALERT_ENABLED }}
-        run: python fetch.py
+        run: |
+          if [ "${{ github.event.inputs.mode }}" = "test-alert" ]; then
+            python fetch.py --test-alert
+          else
+            python fetch.py
+          fi
