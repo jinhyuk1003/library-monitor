@@ -33,8 +33,8 @@ DB_PATH = os.path.join(os.path.dirname(os.path.abspath(__file__)), "seohyeon_lib
 HEADERS = {"User-Agent": "Mozilla/5.0"}
 KST     = ZoneInfo("Asia/Seoul")
 
-OPEN_HOUR  = 9   # 09:00 KST
-CLOSE_HOUR = 22  # 22:00 KST
+OPEN_HOUR  = 7   # 07:00 KST
+CLOSE_HOUR = 23  # 23:00 KST
 # ─────────────────────────────────────────────────────────────────────────────
 
 
